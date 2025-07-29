@@ -9,6 +9,7 @@ class Embedding(nn.Module):
         self.weight = nn.Parameter(
             torch.empty(num_embeddings, d_model, device=device, dtype=dtype)
         )
+        nn.init.trunc_normal_(self.weight, mean=0.0, std=1.0, a=-3, b=3)
 
     def forward(self, x):
         # x: (batch, seq_len) or any shape of indices
